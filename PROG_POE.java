@@ -7,7 +7,8 @@ public class PROG_POE {
     Scanner input = new Scanner(System.in);
      
     //username method//
-    public boolean checkUserName(String username, boolean correctUsername) {
+    public boolean checkUserName(boolean correctUsername) {
+        String username;
             
         while(correctUsername = false) {            
             //checking username properties//
@@ -32,13 +33,21 @@ public class PROG_POE {
     }
     
     //password method//
-    public boolean checkPasswordComplexity(String password, boolean correctPassword) {
+    public boolean checkPasswordComplexity(boolean correctPassword) {
+        String password;
         boolean passwordCapital = false;
         boolean passwordNumber = false;
         boolean passwordSpecialChar = true;
         char passwordChar;
         
-        while (correctPassword = false) {          
+        while (correctPassword = false) {
+            
+            System.out.println("Create a password.\n"
+                    + "The password must contain at least"
+                    + "eight characters, a number, a capital letter, "
+                    + "and a special character.");
+            password = input.nextLine();
+            
             //checking password length//
             if (password.length() <= 8) {
                 
@@ -84,10 +93,17 @@ public class PROG_POE {
     }
     
     //cellphone number method//
-    public boolean checkCellPhoneNumber(String phoneNumber, boolean correctNumberFormat) {
+    public boolean checkCellPhoneNumber() {
+        String phoneNumber;
+        boolean correctNumberFormat = false;
         
         //entering phone number//
         while (correctNumberFormat = false) {
+            
+            System.out.println("Enter a cellphone number.\n"
+                + "The number should begin with \"+27\" and contain ten digits.");   
+            phoneNumber = input.nextLine();
+        
             //checking phone number format//
             if (phoneNumber.length() == 13 && phoneNumber.contains("+27")) {
                 correctNumberFormat = true;
@@ -125,34 +141,18 @@ public class PROG_POE {
         return correctDetails;
     }
     public void main(String[] args) {
-        PROG_POE account = new PROG_POE();
-        
-        String username;
         boolean correctUsername = false;
-        String password;
-         boolean correctPassword = false;
-        String phoneNumber;
-        boolean correctNumberFormat = false;
+        boolean correctPassword = false;
         
-        //creating username//  
-        
-        checkUserName(username, correctUsername);
+        //creating username//
+        checkUserName(correctUsername);
         
         //creating password//
-        System.out.println("Create a password.\n"
-            + "Password must be at least eight characters long"
-            + "and contain a capital letter, a number, and"
-            + "a special character.");            
-        password = input.nextLine();
-        
-        checkPasswordComplexity(password, correctPassword);
+        checkPasswordComplexity(correctPassword);
         
         //entering phone number//  
-        System.out.println("Enter a cellphone number.\n"
-            + "The number should begin with \"+27\" and contain ten digits.");   
-        phoneNumber = input.nextLine();
         
-        checkCellPhoneNumber(phoneNumber, correctNumberFormat);
+        checkCellPhoneNumber();
         
         //Displays registration message//
         registerUser(correctPassword, correctUsername);
