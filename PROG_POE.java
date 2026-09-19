@@ -7,8 +7,7 @@ public class PROG_POE {
     Scanner input = new Scanner(System.in);
      
     //username method//
-    public boolean checkUserName(boolean correctUsername) {
-        String username;
+    public boolean checkUserName(boolean correctUsername, String username) {
             
         while(correctUsername = false) {            
             //checking username properties//
@@ -33,8 +32,7 @@ public class PROG_POE {
     }
     
     //password method//
-    public boolean checkPasswordComplexity(boolean correctPassword) {
-        String password;
+    public boolean checkPasswordComplexity(boolean correctPassword, String password) {
         boolean passwordCapital = false;
         boolean passwordNumber = false;
         boolean passwordSpecialChar = true;
@@ -93,8 +91,7 @@ public class PROG_POE {
     }
     
     //cellphone number method//
-    public boolean checkCellPhoneNumber() {
-        String phoneNumber;
+    public boolean checkCellPhoneNumber(String phoneNumber) {
         boolean correctNumberFormat = false;
         
         //entering phone number//
@@ -138,30 +135,70 @@ public class PROG_POE {
     
     public boolean loginUser(String username, String password, String phoneNumber) {
         boolean correctDetails = false;
+        boolean correctPhoneNumber = false;
+        boolean correctUsername = false;
+        boolean correctPassword = false;
+        String loginUsername;
+        String loginPassword;
+        String loginPhoneNumber;
+        
+        while (correctDetails = false) {
+            System.out.println("Enter a username.\n"
+                + "Username must contain an underscore and be "
+                + "no more than five characters long"); 
+            loginUsername = input.nextLine();
+        
+            if (loginUsername == username) {
+                correctUsername = true;
+            }
+            
+            System.out.println("Create a password.\n"
+                    + "The password must contain at least"
+                    + "eight characters, a number, a capital letter, "
+                    + "and a special character.");
+            loginPassword = input.nextLine();
+        
+            if (loginPassword == password) {
+                correctPassword = true;
+            }
+            
+            System.out.println("Enter a cellphone number.\n"
+                + "The number should begin with \"+27\" and contain ten digits.");   
+            loginPhoneNumber = input.nextLine();
+        
+            if (loginPhoneNumber == phoneNumber) {
+                correctPhoneNumber = true;
+            }
+            
+            if (correctPhoneNumber == true && correctUsername == true && correctPassword == true) {
+                correctDetails = true;
+            }
+        }
+        
         return correctDetails;
     }
     public void main(String[] args) {
+        String username = "a";
+        String phoneNumber = "a";
+        String password = "a";
         boolean correctUsername = false;
         boolean correctPassword = false;
         
         //creating username//
-        checkUserName(correctUsername);
+        checkUserName(correctUsername, username);
         
         //creating password//
-        checkPasswordComplexity(correctPassword);
+        checkPasswordComplexity(correctPassword, password);
         
         //entering phone number//  
         
-        checkCellPhoneNumber();
+        checkCellPhoneNumber(phoneNumber);
         
         //Displays registration message//
         registerUser(correctPassword, correctUsername);
         
         //User login//
-        String loginUsername;
-        String loginPassword;
-        String loginPhoneNumber;
-        
+        loginUser(username, phoneNumber, password);
     }
 }
 
