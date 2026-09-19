@@ -132,7 +132,8 @@ public class PROG_POE {
         }
         return registrationMessage;
     }
-    
+
+    //user login method//
     public boolean loginUser(String username, String password, String phoneNumber) {
         boolean correctDetails = false;
         boolean correctPhoneNumber = false;
