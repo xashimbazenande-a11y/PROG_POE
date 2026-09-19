@@ -186,7 +186,8 @@ public class PROG_POE {
         }
         return correctDetails;
     }
-    
+
+    //login status method//
     public String returnLoginStatus(boolean correctDetails) {
        if  (correctDetails == true) {
            return "You have been successfully logged in";
