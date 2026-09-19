@@ -132,7 +132,7 @@ public class PROG_POE {
         }
         return registrationMessage;
     }
-
+    
     //user login method//
     public boolean loginUser(String username, String password, String phoneNumber) {
         boolean correctDetails = false;
@@ -162,6 +162,9 @@ public class PROG_POE {
             if (loginPassword == password) {
                 correctPassword = true;
             }
+            else {
+                returnLoginStatus(correctDetails);
+            }
             
             System.out.println("Enter a cellphone number.\n"
                 + "The number should begin with \"+27\" and contain ten digits.");   
@@ -170,14 +173,29 @@ public class PROG_POE {
             if (loginPhoneNumber == phoneNumber) {
                 correctPhoneNumber = true;
             }
+            else {
+                returnLoginStatus(correctDetails);
+            }
             
             if (correctPhoneNumber == true && correctUsername == true && correctPassword == true) {
                 correctDetails = true;
             }
+            else {
+                returnLoginStatus(correctDetails);
+            }
         }
-        
         return correctDetails;
     }
+    
+    public String returnLoginStatus(boolean correctDetails) {
+       if  (correctDetails == true) {
+           return "You have been successfully logged in";
+       }
+       else {
+           return "Your login attempt was unsuccessful";
+       }
+    }
+    
     public void main(String[] args) {
         String username = "a";
         String phoneNumber = "a";
